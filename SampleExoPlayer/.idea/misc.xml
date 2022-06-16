@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable/ic_brightness.xml" value="0.1" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable/ic_filter.xml" value="0.18" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable/ic_volume.xml" value="0.1" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/activity_launcher.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/activity_main.xml" value="0.22916666666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/activity_player.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/activity_splash.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/dialog_filter.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/dialog_video_player.xml" value="0.11666666666666667" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/layout_filter.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/layout/layout_video_listing.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/menu/filter.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/xml/network_security_config.xml" value="0.10208333333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
