@@ -7,42 +7,38 @@
     android:background="@color/black"
     tools:context=".ui.view.activity.MainActivity">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_search"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/field_height"
-        android:layout_marginHorizontal="@dimen/default_fifteen"
-        android:layout_marginTop="@dimen/padding_five"
-        android:hint="@string/search"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:singleLine="true"
-        android:textColor="@color/white"
-        android:textColorHint="@color/text_color_light"
-        app:layout_constraintEnd_toStartOf="@+id/img_filter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_filter"
-        android:layout_width="@dimen/margin_twenty"
-        android:layout_height="@dimen/margin_twenty"
-        android:layout_marginTop="@dimen/default_fifteen"
-        android:layout_marginEnd="@dimen/default_fifteen"
-        android:src="@drawable/ic_filter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:defaultNavHost="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_search"
-        app:spanCount="2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
+    <RelativeLayout
+        android:id="@+id/rl_loading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieLoading"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:layout_centerInParent="true"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -66,13 +66,13 @@ class VideoListingAdapter(private val videoClickedInteraction: VideoClickedInter
         fun bind(item: VideoLists) = with(binding) {
             img.loadImage(url = item.img, centerCrop = true)
             tvTitle.text = item.title
-            img.setOnClickListener { videoClickedInteraction?.onVideoClick(item.url ?: "") }
+            img.setOnClickListener { videoClickedInteraction?.onVideoClick(item) }
         }
     }
 
     interface VideoClickedInteraction {
         fun onVideoClick(
-            url: String
+            videoLists: VideoLists
         )
     }
 

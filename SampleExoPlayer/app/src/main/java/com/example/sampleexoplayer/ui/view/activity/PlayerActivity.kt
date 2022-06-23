@@ -33,9 +33,7 @@ class PlayerActivity : AppCompatActivity(),
     private lateinit var _binding: ActivityPlayerBinding
     private val binding get() = _binding
 
-    private var url: String = ""
-    private var videoQuality = 0
-    private var audioQuality = 0
+    private val sessionManager = SessionManager()
 
     private var player: ExoPlayer? = null
     private var playWhenReady = true
@@ -59,9 +57,6 @@ class PlayerActivity : AppCompatActivity(),
             this@PlayerActivity,
             CustomOnScaleGestureListener(binding.styledPlayerView)
         )
-        url = intent.getStringExtra("URL").toString()
-        videoQuality = intent.getIntExtra("video", 0)
-        audioQuality = intent.getIntExtra("audio", 0)
     }
 
 
@@ -71,6 +66,14 @@ class PlayerActivity : AppCompatActivity(),
             player = ExoPlayer.Builder(this@PlayerActivity).build()
             binding.styledPlayerView.player = player
 
+            val play = sessionManager.keyPlayWith
+
+            val video = play?.video ?:0
+            val audio = play?.audio ?:0
+            val url = play?.url ?:""
+
+            Log.e("initPlayer", "video $video. audio: $audio url: $url")
+
             object : YouTubeExtractor(this@PlayerActivity) {
                 override fun onExtractionComplete(
                     ytFiles: SparseArray<YtFile>?,
@@ -78,9 +81,8 @@ class PlayerActivity : AppCompatActivity(),
                 ) {
                     if (ytFiles.isNotNull()) {
 
-                        val videoUrl = ytFiles?.get(videoQuality)?.url ?: ""
-                        val audioUrl = ytFiles?.get(audioQuality)?.url ?: ""
-                        val audio = ytFiles?.get(audioQuality)?.url ?: ""
+                        val videoUrl = ytFiles?.get(video)?.url ?: ""
+                        val audioUrl = ytFiles?.get(audio)?.url ?: ""
 
                         val audioSource: MediaSource = ProgressiveMediaSource
                             .Factory(DefaultHttpDataSource.Factory())

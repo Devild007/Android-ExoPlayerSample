@@ -13,11 +13,9 @@
         <item name="colorAccent">@color/text_color_light</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/purple_200</item>
         <!-- Customize your theme here. -->
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
     </style>
 </resources>

@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1405" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1405" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/drawable/ic_brightness.xml" value="0.1405" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/drawable/ic_check.xml" value="0.1405" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/drawable/ic_filter.xml" value="0.1405" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/drawable/ic_photo.xml" value="0.1405" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/layout/activity_main.xml" value="0.24322916666666666" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/layout/dialog_filter.xml" value="0.10208333333333333" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/layout/fragment_video_detail.xml" value="0.1" />
+        <entry key="..\:/Work/Projects/Android-ExoPlayerSample/SampleExoPlayer/app/src/main/res/layout/fragment_video_list.xml" value="0.22916666666666666" />
         <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable/ic_brightness.xml" value="0.1" />
         <entry key="..\:/Work/Projects/SampleExoPlayer/app/src/main/res/drawable/ic_filter.xml" value="0.18" />

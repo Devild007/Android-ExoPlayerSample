@@ -1,105 +1,75 @@
 package com.example.sampleexoplayer.ui.view.activity
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.sampleexoplayer.R
 import com.example.sampleexoplayer.databinding.ActivityMainBinding
-import com.example.sampleexoplayer.device.utility.getAudioQuality
-import com.example.sampleexoplayer.device.utility.getVideoList
-import com.example.sampleexoplayer.device.utility.getVideoQuality
-import com.example.sampleexoplayer.device.utility.onTextChange
-import com.example.sampleexoplayer.domain.Filter
-import com.example.sampleexoplayer.domain.VideoLists
-import com.example.sampleexoplayer.ui.view.adapter.VideoListingAdapter
-import com.example.sampleexoplayer.ui.view.dialog.DialogFilter
+import com.example.sampleexoplayer.device.utility.DataState
+import com.example.sampleexoplayer.device.utility.hide
+import com.example.sampleexoplayer.device.utility.show
+import com.example.sampleexoplayer.domain.PlayWith
+import com.example.sampleexoplayer.ui.view.models.ViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import java.util.*
 
-@SuppressLint("NonConstantResourceId")
 @DelicateCoroutinesApi
-class MainActivity : AppCompatActivity(), VideoListingAdapter.VideoClickedInteraction {
+@ExperimentalCoroutinesApi
+class MainActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityMainBinding
     private val binding get() = _binding
 
-    private lateinit var adapter: VideoListingAdapter
+    private val viewModel: ViewModel by viewModels()
 
-    private val urlArrayList = ArrayList<VideoLists>()
-    private val videoQualityArrayList = ArrayList<Filter>()
-    private val audioQualityArrayList = ArrayList<Filter>()
+    private lateinit var navigationController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?): Unit = runBlocking {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initializeView()
+        setupNavHostFragment()
+        attachObservers()
     }
 
-    private fun initializeView() = runBlocking {
-        binding.apply {
-            etSearch.onTextChange {
-                filter(it)
-            }
-
-            urlArrayList.clear()
-            videoQualityArrayList.clear()
-            audioQualityArrayList.clear()
-            urlArrayList.addAll(getVideoList())
-            videoQualityArrayList.addAll(getVideoQuality())
-            audioQualityArrayList.addAll(getAudioQuality())
-
-            initAdapter()
-
-            imgFilter.setOnClickListener {
-                val dialog = DialogFilter.newInstance(videoQualityArrayList, audioQualityArrayList)
-                val ft = supportFragmentManager.beginTransaction()
-                ft.add(dialog, null)
-                ft.commitAllowingStateLoss()
-            }
-        }
-    }
-
-    private fun initAdapter() {
-        binding.apply {
-            adapter = VideoListingAdapter(this@MainActivity)
-            recyclerView.adapter = adapter
-            adapter.submitList(urlArrayList)
-        }
-    }
-
-    private fun filter(string: String) {
-        val stringArrayList = ArrayList<VideoLists>()
-        for (item in getVideoList()) {
-            when {
-                item.title?.lowercase(Locale.getDefault())
-                    ?.contains(string.lowercase(Locale.getDefault())) == true -> {
-                    stringArrayList.add(item)
+    private fun attachObservers() {
+        viewModel.playWith.observe(this) {
+            when (it) {
+                is DataState.Success<PlayWith> -> {
+                    showLoading()
+                    navigationController.navigate(R.id.action_videoListFragment_to_videoDetailFragment)
+                }
+                is DataState.Loading -> {
+                    showLoading(true)
+                }
+                is DataState.Error -> {
+                    Log.e("MainActivity", it.exception.stackTrace.toString())
+                    showLoading()
                 }
             }
         }
-        adapter.filterList(stringArrayList)
     }
 
-    override fun onVideoClick(url: String) {
-        var video = 0
-        var audio = 0
-        videoQualityArrayList.forEach {
-            if (it.selected) {
-                video = it.id ?: 0
+    private fun setupNavHostFragment() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
+        navigationController = navHostFragment.navController
+    }
+
+    private fun showLoading(visibility: Boolean = false) = runOnUiThread {
+        binding.apply {
+            if (visibility) {
+                rlLoading.show()
+                lottieLoading.playAnimation()
+            } else {
+                rlLoading.hide()
+                lottieLoading.pauseAnimation()
             }
         }
-        audioQualityArrayList.forEach {
-            if (it.selected) {
-                audio = it.id ?: 0
-            }
-        }
-        val intent = Intent(this, PlayerActivity::class.java)
-        intent.putExtra("URL", url)
-        intent.putExtra("video", video)
-        intent.putExtra("audio", audio)
-        startActivity(intent)
     }
 
 }

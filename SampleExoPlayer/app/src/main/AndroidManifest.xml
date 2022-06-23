@@ -20,6 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="DataExtractionRules,UnusedAttribute"
         tools:replace="android:allowBackup">
+
         <activity
             android:name=".ui.view.activity.LauncherActivity"
             android:exported="true">
@@ -32,13 +33,12 @@
         <activity
             android:name=".ui.view.activity.MainActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
-            android:exported="true"
-            android:launchMode="singleTop" />
+            android:exported="true" />
         <activity
             android:name=".ui.view.activity.PlayerActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:exported="true"
-            android:launchMode="singleTop" />
+            android:screenOrientation="landscape" />
 
         <uses-library
             android:name="org.apache.http.legacy"
